@@ -6,7 +6,7 @@ using namespace std;
 
 enum enTemperatureChoices
 {
-	Celisuis = 1,
+	Celsius = 1,
 	Fahrenheit = 2,
 	Kelvin = 3,
 	Exit = 4
@@ -23,7 +23,7 @@ enTemperatureChoices readConvertTemp(int from, int to, bool hasExit = true)
 {
 	int choice = 0;
 
-	cout << "\t[1] Celisuis\n";
+	cout << "\t[1] Celsius\n";
 	cout << "\t[2] Fahrenheit\n";
 	cout << "\t[3] Kelvin\n";
 	cout << (hasExit ? "\t[4] Exit\n" : "\n");
@@ -66,7 +66,7 @@ double convert(const stTempValues& stValues)
 {
 	switch (stValues.tempFrom)
 	{
-	case enTemperatureChoices::Celisuis:
+	case enTemperatureChoices::Celsius:
 		switch (stValues.tempTo)
 		{
 		case enTemperatureChoices::Fahrenheit:
@@ -79,17 +79,17 @@ double convert(const stTempValues& stValues)
 	case enTemperatureChoices::Fahrenheit:
 		switch (stValues.tempTo)
 		{
-		case enTemperatureChoices::Celisuis:
+		case enTemperatureChoices::Celsius:
 			return (stValues.tempValue - 32) * 5 / 9;
 		case enTemperatureChoices::Kelvin:
-			return (stValues.tempValue - 32) * 5 / 9 + +273.15;
+			return (stValues.tempValue - 32) * 5 / 9 + 273.15;
 		default:
 			return stValues.tempValue;
 		}
 	case enTemperatureChoices::Kelvin:
 		switch (stValues.tempTo)
 		{
-		case enTemperatureChoices::Celisuis:
+		case enTemperatureChoices::Celsius:
 			return stValues.tempValue - 273.15;
 		case enTemperatureChoices::Fahrenheit:
 			return (stValues.tempValue - 273.15) * 9 / 5 + 32;
@@ -105,12 +105,14 @@ string tempStringFormat(enTemperatureChoices C)
 {
 	switch (C)
 	{
-	case enTemperatureChoices::Celisuis:
+	case enTemperatureChoices::Celsius:
 		return "Celisius";
 	case enTemperatureChoices::Fahrenheit:
 		return "Fahrenheit";
 	case enTemperatureChoices::Kelvin:
 		return "Kelvin";
+	default:
+		return "";
 	}
 }
 
